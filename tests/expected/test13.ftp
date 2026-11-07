@@ -1,0 +1,5 @@
+SITE CHMOD 755 file.txt
+LIST -la /pub/some dir
+RNFR old name.txt
+RNTO new name.txt
+HELP SITE

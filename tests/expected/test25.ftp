@@ -1,0 +1,7 @@
+AUTH TLS
+234 AUTH TLS successful
+PBSZ 0
+200 PBSZ 0 successful
+PROT P
+200 Protection set to Private
+631 U2VjcmV0

@@ -1,0 +1,4 @@
+# scratch files from test and lint runs
+tests/actual
+lint/actual
+*.swp

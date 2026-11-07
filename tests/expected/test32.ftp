@@ -1,0 +1,16 @@
+TYPE A N
+200 Type set to A N
+TYPE L 36
+STRU R
+MODE B
+ALLO 1024 R 128
+REST 1234
+110 MARK 1234 = 5678
+120 Service ready in 5 minutes
+215 UNIX Type: L8
+PORT 300,0,0,1,4,1
+TYPE X
+RNFR a
+350 Ready
+RNTO b
+250 Done

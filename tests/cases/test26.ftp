@@ -1,0 +1,4 @@
+MLST /pub/file.txt
+250-Listing /pub/file.txt
+ type=file;size=1024;modify=20260905120000; /pub/file.txt
+250 End

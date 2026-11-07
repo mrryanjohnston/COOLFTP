@@ -1,0 +1,13 @@
+220 Service ready
+USER Doe
+331 User name ok, need password
+PASS mumble
+230 User logged in
+RETR test.pl1
+150 File status okay; about to open data connection
+226 Closing data connection, file transfer successful
+TYPE I
+200 Command OK
+STOR >udd>cn>fd
+550 Access denied
+QUIT

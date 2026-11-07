@@ -1,0 +1,4 @@
+USER bob
+331 Password required
+PASS x
+230 OK

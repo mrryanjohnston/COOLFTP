@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  CLIPS_VERSION: 6.4.2
+
+jobs:
+  check:
+    name: Lint and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache CLIPS
+        id: cache-clips
+        uses: actions/cache@v4
+        with:
+          path: ~/clips
+          key: clips-${{ env.CLIPS_VERSION }}-${{ runner.os }}
+
+      - name: Build CLIPS
+        if: steps.cache-clips.outputs.cache-hit != 'true'
+        run: |
+          tarball="clips_core_source_$(echo "$CLIPS_VERSION" | tr -d '.').tar.gz"
+          mkdir -p ~/clips/src
+          curl -sSL -o "$tarball" "https://sourceforge.net/projects/clipsrules/files/CLIPS/$CLIPS_VERSION/$tarball"
+          tar --strip-components=2 -xf "$tarball" -C ~/clips/src
+          make -C ~/clips/src
+          mkdir -p ~/clips/bin
+          cp ~/clips/src/clips ~/clips/bin/clips
+
+      - name: Add CLIPS to PATH
+        run: echo "$HOME/clips/bin" >> "$GITHUB_PATH"
+
+      - name: Lint
+        run: make lint
+
+      - name: Test
+        run: make test

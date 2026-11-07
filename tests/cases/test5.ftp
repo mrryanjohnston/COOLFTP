@@ -1,0 +1,9 @@
+220 Service ready
+USER bob
+331 Password required for bob
+PASS hunter2
+230 Logged in
+CWD /pub
+250 Directory changed to /pub
+QUIT
+221 Goodbye

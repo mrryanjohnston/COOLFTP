@@ -1,0 +1,11 @@
+TYPE I
+200 Type set to I
+PASV
+227 Entering Passive Mode (127,0,0,1,195,80)
+RETR file.bin
+150 Opening BINARY mode data connection for file.bin (1024 bytes)
+226 Transfer complete
+RETR missing.bin
+550 missing.bin: No such file or directory
+QUIT
+221 Goodbye

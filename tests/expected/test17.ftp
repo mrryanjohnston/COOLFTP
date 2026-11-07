@@ -1,0 +1,4 @@
+RETR big.iso
+ABOR
+426 Transfer aborted
+226 Abort successful
