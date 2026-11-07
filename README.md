@@ -59,6 +59,42 @@ default of RFC 959: ASCII non-print, file structure, stream mode.
                    (type image) (structure record) (mode block)))
 ```
 
+A program can also make a message. Make an instance of `FTP-COMMAND`
+or `FTP-REPLY` and send it `pprint` with a logical name. `t` is the
+terminal. An open file or a socket sends the message to a peer.
+
+```clips
+(make-instance cmd of FTP-COMMAND (verb RETR) (argument "notes.txt"))
+(send [cmd] pprint t)
+(make-instance rep of FTP-REPLY (code 211) (lines "Features:" " SIZE" " MDTM")
+                                (text "End"))
+(send [rep] pprint t)
+```
+
+```
+RETR notes.txt
+211-Features:
+ SIZE
+ MDTM
+211 End
+```
+
+Each line ends with CR LF. A data message is an `FTP-RECORD`, an
+`FTP-PAGE` or an `FTP-MARKER`. Give it the transfer parameters and the
+logical bytes. `pprint` encodes it in that type, structure and mode.
+Open the file with `"wb"`.
+
+```clips
+(make-instance rec of FTP-RECORD (structure record) (mode block)
+                                 (octets 104 105) (eor TRUE) (eof TRUE))
+(open "hi.dat" out "wb")
+(send [rec] pprint out)
+(close out)
+```
+
+The file has five octets: the descriptor 192, the count 0 2, then 104
+and 105. [API.md](API.md) gives the slots of each class.
+
 `program.bat` reads six control connections and one data connection from
 `tests/cases`:
 
